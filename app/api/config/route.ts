@@ -1,0 +1,2 @@
+import {bindings,owner,responseError} from '@/lib/tradeguard/server';
+export async function GET(){try{await owner();const e=bindings();return Response.json({aiEnabled:e.QWEN_ENABLED==='true'&&!!e.QWEN_API_KEY&&!!e.QWEN_MODEL&&!!e.QWEN_BASE_URL,model:e.QWEN_MODEL??null,escrowAddress:e.ESCROW_ADDRESS??null,tokenAddress:e.TOKEN_ADDRESS??null,rpcUrl:e.MONAD_RPC_URL??'https://testnet-rpc.monad.xyz',chainId:Number(e.MONAD_CHAIN_ID??10143)});}catch(e){return responseError(e);}}
