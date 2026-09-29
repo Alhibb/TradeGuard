@@ -10,3 +10,15 @@
 - Official Metropolis rules/form: still need confirmation from the official portal. No submission has been made.
 
 Materials: METROPOLIS_SUBMISSION.md and DEMO_NARRATION.md.
+
+## Publishing result
+
+Updated Site publication succeeded: https://devclans-tradeguard.alhibb.chatgpt.site
+Deployment: appgdep_6abb7637567481918a3933207b71c8fa
+Source: 7eea3cacc8a5e7a4770e9062bbdffc89faf2701d
+Version: appgprj_6ab82a6b21248191b6fbf1341c5309bb~appgver_85dc9b1f68c08191a65f88940e4d6353
+Audience remains owner-only; hosted environment revision 0. Hosted Qwen is not configured. Local runtime confirmed aiEnabled=true, model=qwen-plus, chainId=10143.
+
+Shareable clean source snapshot: outputs/TradeGuard-source.zip. Narration and submission draft copies are in outputs/. The ZIP excludes actual .env, runtime state and credentials. It is not a video or public repository.
+
+Still required: funded testnet signing wallet, GitHub destination, judge access choice, secure hosted-key entry, and restored browser approval to complete recording. No Monad deployment or final hackathon submission has been performed.

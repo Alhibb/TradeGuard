@@ -35,7 +35,7 @@ Sources checked 2026-09-29:
 - https://www.alibabacloud.com/help/en/model-studio/model-calling-in-sub-workspace
 - https://www.alibabacloud.com/help/en/model-studio/qwen-api-via-dashscope
 
-No QWEN environment variable names were present in this local process. The reply "Singapore" confirms region, not that a hosting secret is configured. Live model accuracy and connectivity remain unverified until the runtime is configured and a synthetic request succeeds. Mocked adapter tests are not a live-model benchmark.
+Update: the configured Singapore Qwen Plus key passed one live synthetic extraction (HTTP 200, 12/12 explicit fields matched, approximately 7.6 seconds). QWEN_ENABLED is now true locally and the app was restarted. This one fixture is not an accuracy benchmark. The hosted Qwen secret has not been configured: automatic approval review rejected moving a key through command output.
 
 ## Recording runbook
 
@@ -50,7 +50,7 @@ No QWEN environment variable names were present in this local process. The reply
 
 ## Before final submission
 
-- Confirm a working judge-accessible URL; the existing prototype is private and its hosting ownership was not transferred with this source archive.
+- Confirm a working judge-accessible URL; Site ownership has now been confirmed, but its audience remains owner-only pending a judge-access choice.
 - Complete authenticated browser verification including evidence upload/download, refresh, export, unauthenticated denial and cross-owner denial.
 - Configure Singapore secrets securely and run synthetic extraction; capture the model, date, fields and errors without keys.
 - Deploy to Monad testnet only with authorization and testnet MON; verify token code, six decimals, escrow token address and chain 10143. No-value TGT only.
@@ -81,3 +81,4 @@ node --import tsx scripts/verify-local-worker.ts
 ```
 
 Apply the schema once per fresh local database. The test deliberately injects trusted identity fixtures only into localhost. It verifies application ownership checks, not the hosted sign-in/ingress boundary. Do not expose this worker directly to the internet.
+
