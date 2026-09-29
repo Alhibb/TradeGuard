@@ -17,3 +17,22 @@ test('mutual resolution cannot be signed by one party or stale proposal',async()
 test('pause stops new funding but permits disputes and allocated withdrawals',async()=>{const order=await funded();await assert.rejects(send(stranger,'pause'));await send(buyer,'pause');await assert.rejects(send(seller,'submitDelivery',[order,hash]));await send(buyer,'dispute',[order,hash]);await send(arb,'resolve',[order,500000n,hash]);await send(buyer,'withdraw');await send(seller,'withdraw');await invariant();await send(buyer,'unpause');});
 test('multiple orders remain isolated over generated splits',async()=>{let expectedBuyer=0n,expectedSeller=0n;for(let i=1;i<=12;i++){const amount=BigInt(i*997);const order=await funded(amount);const split=amount*BigInt((i*37)%101)/100n;await send(seller,'dispute',[order,hash]);await send(arb,'resolve',[order,split,hash]);expectedBuyer+=amount-split;expectedSeller+=split;await invariant();}assert.equal(await read('credits',[addresses[0]]),expectedBuyer);assert.equal(await read('credits',[addresses[1]]),expectedSeller);await send(buyer,'withdraw');await send(seller,'withdraw');assert.equal(await read('liabilities'),0n);assert.equal(await read('creditsTotal'),0n);await invariant();});
 test.after(async()=>{await provider.disconnect()});
+
+test('100-bag demo settlement: 2500 TGT funded, 2250/250 withdrawn',async()=>{
+ const amount=parseUnits('2500',6),sellerAmount=parseUnits('2250',6),buyerAmount=parseUnits('250',6);
+ const balance=address=>pub.readContract({address:token,abi:tokenArtifact.abi,functionName:'balanceOf',args:[address]});
+ const buyerBefore=await balance(addresses[0]),sellerBefore=await balance(addresses[1]);
+ const order=await funded(amount);await send(seller,'submitDelivery',[order,keccak256(toBytes('90 of 100 bags delivered'))]);
+ await send(buyer,'dispute',[order,hash]);await assert.rejects(send(buyer,'approveDelivery',[order]));
+ await send(arb,'resolve',[order,sellerAmount,hash]);
+ assert.equal(await read('credits',[addresses[0]]),buyerAmount);assert.equal(await read('credits',[addresses[1]]),sellerAmount);
+ await send(buyer,'withdraw');await send(seller,'withdraw');
+ assert.equal(await balance(addresses[0]),buyerBefore-amount+buyerAmount);assert.equal(await balance(addresses[1]),sellerBefore+sellerAmount);
+ assert.equal(await read('liabilities'),0n);assert.equal(await read('creditsTotal'),0n);await invariant();
+});
+
+test('dispute revokes old mutual consent and ownership cannot be renounced',async()=>{
+ const order=await funded();await send(seller,'proposeMutual',[order,400000n]);await send(buyer,'dispute',[order,hash]);
+ await assert.rejects(send(buyer,'approveMutual',[order,400000n]));await assert.rejects(send(buyer,'renounceOwnership'));
+ await send(arb,'resolve',[order,400000n,hash]);await send(buyer,'withdraw');await send(seller,'withdraw');await invariant();
+});

@@ -44,3 +44,15 @@ This is not audited or production-ready financial infrastructure. Only the suppl
 Scanned PDFs need external OCR. Evidence comparisons are deterministic checks, not authenticity verification. The Qwen adapter has not been tested with live credentials. Demo tests do not establish model accuracy. Real wallet interaction requires configuration and was not exercised against deployed contracts.
 
 See `docs/CONTRACT_REVIEW.md` for static review and `tests/` for executable checks. Built using the TradeGuard research blueprint supplied in this conversation, plus frontend, contract-review, testing and Sites guidance.
+
+## Metropolis preparation
+
+See [submission draft and demo runbook](docs/METROPOLIS_SUBMISSION.md) and [current verification evidence](docs/VERIFICATION.md). Provider adapter checks run with `node --import tsx --test tests/extraction.test.ts`. The synthetic persisted API workflow is in `scripts/verify-local-demo.ts`; it requires the localhost development server and initialized local D1 schema.
+
+## Run locally on Windows
+
+1. Add your Singapore Qwen key to `.env` and set `QWEN_ENABLED=true` when ready. Leave it false for the deterministic parser. The key stays server-side. Restart the launcher after editing this file.
+2. Run `pnpm build` after source changes, then `pnpm local`.
+3. Open http://127.0.0.1:5173 and choose **Sign in to your workspace**. This is a localhost-only demo identity, not production authentication.
+
+The launcher initializes local D1 tables and retains D1/R2 data in `.wrangler/state`. It loads `.env` explicitly. `.env` is Git-ignored; `.env.example` contains empty placeholders only. The local worker runs on port 8787 behind a loopback-only sign-in proxy on port 5173. Neither port should be exposed publicly. Stop with Ctrl+C.
