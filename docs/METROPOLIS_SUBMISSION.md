@@ -1,84 +1,59 @@
-# Metropolis submission preparation
+# Metropolis submission guide — 2026-10-02
 
-Prepared 2026-09-29. Target: https://www.monad.xyz/developers/hackathons/metropolis
+## Verified official requirements
 
-## Submission draft
+The official page https://monad.xyz/developers/hackathons/metropolis was read in the browser on 2026-10-02. Its application link is https://hackathon.monad.xyz/.
 
-**Project:** DevClans TradeGuard
+The FAQ requests a working product with a public project profile: a demo, a short write-up and a code link. It names 13 October as the deadline, judging 14–27 October and winners 3 November. Confirm year, exact time/timezone, required video duration, eligibility and sponsor criteria in the application platform before submission.
 
-**Pitch:** Turn trade agreements into reviewed terms, delivery evidence and accountable escrow settlement. Buyers and suppliers approve the same agreement; a named arbitrator resolves disputed deliveries. Qwen suggests structured terms, while people and wallet-authorized contract calls control payments.
+Existing projects can participate if the submitted work is new within the six-week window. Open source is encouraged, but judges must be able to verify the work. Suggested track: Consumer Products & Payments. Its official description emphasizes instant, programmable payment rails and a usable first experience.
 
-**Demo story:** Kano Foods orders 100 bags of white maize from Savannah Grains. The invoice is NGN 4,200,000; the separate demonstration settlement is 2,500 no-value TGT. A delivery declaration records 90 bags. The buyer disputes the ten-bag shortage. The arbitrator allocates 2,250 TGT to the supplier and 250 TGT to the buyer; each withdraws independently.
+## Copy-ready project text
 
-**Monad integration:** Solidity escrow with immutable accepted terms commitments, named wallet roles, exact token funding, dispute and mutual settlement paths, and pull withdrawals. Documents remain off-chain. The private sandbox and wallet escrow are separate workflows.
+**Name:** DevClans TradeGuard
 
-**Suggested track:** Consumer Products & Payments, subject to the current official form. AI extraction is an integration, not autonomous arbitration.
+**Pitch:** TradeGuard turns trade agreements into reviewed terms, delivery evidence and accountable escrow settlement. Singapore Qwen suggests structured terms for human approval. Buyers and suppliers commit to the same agreement, and a named arbitrator resolves delivery disputes. Monad testnet contracts enforce wallet roles, hold no-value TGT and let each participant withdraw their allocation independently.
 
-The official event page and track page could not be retrieved during this run. Confirm the exact deadline/timezone, track, eligibility, required video duration, repository access and sponsor criteria in the official portal before submitting. Do not represent this preparation as a submitted entry.
+**Problem:** Written agreements, delivery receipts and payment decisions often become disconnected when a shipment is incomplete. TradeGuard ties reviewed terms to evidence, a dispute reason and a settlement record.
 
-## Singapore Qwen setup
+**Demo:** Kano Foods orders 100 bags of maize from Savannah Grains. The invoice is NGN 4,200,000, while the separate demonstration settlement is 2,500 TGT. A declaration records 90 bags. The buyer disputes the shortage, an arbitrator allocates 2,250 TGT to the supplier and 250 TGT to the buyer, and both withdraw.
 
-Use server-side runtime settings:
+**Monad integration:** Deployed Solidity escrow; immutable token choice and terms commitments; wallet-enforced buyer/supplier/arbitrator roles; exact funding; dispute and mutual settlement; pull withdrawals. Documents stay off-chain. Sandbox records and testnet trades are separate.
 
-```text
-QWEN_ENABLED=true
-QWEN_BASE_URL=https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-QWEN_MODEL=qwen-plus
-QWEN_API_KEY=<configure as a secret, never in client code>
-```
+**AI integration:** Singapore Qwen Plus suggests structured fields. The adapter requests JSON, validates and normalizes fields and checks source quotes. Humans compare all fields before approving. AI does not arbitrate or sign.
 
-Alibaba also recommends the workspace-specific Singapore URL:
-`https://<WorkspaceId>.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1`.
-The key must belong to the Singapore workspace and have permission for the selected model. Qwen Plus is a starting configuration, not a benchmark winner. The adapter requests JSON with thinking disabled and validates returned fields and quotes. Schema-valid values can still be incorrect; compare all fields with the source.
+**Limits:** Prototype, not audited. No-value TGT only. Evidence does not prove physical delivery. Deadlines are advisory, and unavailable arbitration plus refusal of mutual settlement can lock funds indefinitely.
 
-Sources checked 2026-09-29:
-- https://www.alibabacloud.com/help/en/model-studio/model-calling-in-sub-workspace
-- https://www.alibabacloud.com/help/en/model-studio/qwen-api-via-dashscope
+## Links and evidence
 
-Update: the configured Singapore Qwen Plus key passed one live synthetic extraction (HTTP 200, 12/12 explicit fields matched, approximately 7.6 seconds). QWEN_ENABLED is now true locally and the app was restarted. This one fixture is not an accuracy benchmark. The hosted Qwen secret has not been configured: automatic approval review rejected moving a key through command output.
+- Code: https://github.com/Alhibb/TradeGuard
+- App: https://devclans-tradeguard.alhibb.chatgpt.site/ — owner-only; judge access must be arranged.
+- TGT: https://testnet.monadscan.com/address/0xfcc80262fccc19b3a833e2453e52316a0edf5f3b
+- Escrow: https://testnet.monadscan.com/address/0x27ba251f396277a9af8ca7cf2cde4a279582f83a
+- Screenshots: [gallery in README](../README.md#screenshots)
+- Checks: [VERIFICATION.md](VERIFICATION.md)
+- Narration: [DEMO_NARRATION.md](DEMO_NARRATION.md)
 
-## Recording runbook
+Do not supply invented transaction hashes, video links or submission confirmation IDs. The deployed escrow's read-only check returned next trade ID 1 on 2026-10-02: a live three-wallet trade has not yet been created.
 
-1. Sign in to the protected published workspace. Open New trade, Use sample text, Extract terms. Show the actual provider label. The sample shortcut skips extraction, so do not use it to demonstrate Qwen.
-2. Compare all extracted fields with the source: 100 bags, 42,000 NGN per bag, 2,500 TGT, 48-hour review, named parties and arbitrator. Save.
-3. Approve as buyer, switch to supplier and approve. Switch to buyer and fund demo escrow.
-4. Switch to supplier. Record 90 bags, a note describing ten missing bags, and a synthetic evidence attachment. Download it to check persistence.
-5. Switch to buyer. Show the ten-bag discrepancy, then dispute. Show that ordinary delivery acceptance is unavailable.
-6. Switch to arbitrator. Resolve at 90 percent to supplier with an evidence-based reason. Show supplier 2,250 TGT and buyer 250 TGT.
-7. Withdraw as buyer, then supplier. Show zero remaining demo escrow, both withdrawal confirmations, activity history and exported record. Refresh and verify the result persists.
-8. Explain that the role selector is a private simulation. For the separate Monad segment, use three distinct test wallets and deployed TGT/escrow addresses; record successful receipts for create, accept, token allowance, fund, evidence, dispute, resolve and both withdrawals. Never label sandbox activity as blockchain transactions.
+## Submission steps
 
-## Before final submission
+1. Open the official platform and review rules. Complete team, contact and project fields personally; choose the closest track.
+2. Explain the new build-window work and link supporting commits. Distinguish pre-existing code from eligible work.
+3. Set hosted Qwen through secure secret entry, set hosted token/escrow/RPC/chain values and apply the environment through deployment.
+4. Choose judge access explicitly: invite judge accounts or approve public Site access. Verify from an intended judge account before using the app link.
+5. Run the sandbox story using New trade → Use sample text → Extract terms. Show the provider label and source review, approvals, evidence download, 90/10 decision and both withdrawals. Refresh and export.
+6. Run the separate Monad story with distinct buyer, supplier and arbitrator wallets. Record successful receipts for create, acceptance, allowance, funding, delivery commitment, dispute, resolution and withdrawals. See README for the exact wallet runbook.
+7. Record and upload the demo in the platform's required format/length. Keep keys, recovery phrases and private runtime settings out of captures.
+8. Paste the write-up, code/app/video links and requested chain proof. Review sponsor-specific claims and required fields.
+9. Submit before the exact cutoff, then save the public project-profile URL and submission confirmation. No entry has been submitted by this preparation.
 
-- Confirm a working judge-accessible URL; Site ownership has now been confirmed, but its audience remains owner-only pending a judge-access choice.
-- Complete authenticated browser verification including evidence upload/download, refresh, export, unauthenticated denial and cross-owner denial.
-- Configure Singapore secrets securely and run synthetic extraction; capture the model, date, fields and errors without keys.
-- Deploy to Monad testnet only with authorization and testnet MON; verify token code, six decimals, escrow token address and chain 10143. No-value TGT only.
-- Provide repository access and a clear record of work in the eligible build window, team details, video and deployment receipt links required by the actual form.
-- State prototype limits: no audit; advisory deadlines; unavailable arbitration plus refusal of mutual settlement can lock funds indefinitely; evidence declarations do not prove physical delivery.
+## Suggested three-minute recording
 
-## Reproducible local checks
+- 0:00–0:20: problem and 100/90-bag story.
+- 0:20–0:55: real Qwen extraction, reviewed fields and separate invoice/TGT amounts.
+- 0:55–1:40: sandbox approvals, evidence shortage, dispute and 90/10 resolution.
+- 1:40–2:35: deployed Monad contract and successful settlement/withdrawal receipts. Record only after the live rehearsal.
+- 2:35–3:00: result, practical limits and links.
 
-```text
-pnpm install --frozen-lockfile
-pnpm exec tsc --noEmit
-node --import tsx --test tests/domain.test.ts tests/extraction.test.ts
-node scripts/compile-contracts.mjs
-node --test tests/contracts.test.mjs
-pnpm build
-```
-
-The provider tests use synthetic mocked responses; contract tests deploy to an in-process local EVM. Neither proves live Singapore Qwen, deployed Monad transactions, or authenticated browser behavior. See VERIFICATION.md for this run's actual results.
-
-### Built-worker verification alternative (passed)
-
-When the development server fails, build first and initialize/start the worker using the same explicit local state directory:
-
-```text
-node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0000_sturdy_microchip.sql
-node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --local --config dist/server/wrangler.json --persist-to .wrangler/state --ip 127.0.0.1 --port 8787 --inspector-port 0
-node --import tsx scripts/verify-local-worker.ts
-```
-
-Apply the schema once per fresh local database. The test deliberately injects trusted identity fixtures only into localhost. It verifies application ownership checks, not the hosted sign-in/ingress boundary. Do not expose this worker directly to the internet.
-
+Three minutes is a proposed narration target, not a verified platform requirement. Screenshots do not substitute for a video or successful wallet receipts.

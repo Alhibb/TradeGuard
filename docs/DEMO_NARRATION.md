@@ -32,13 +32,13 @@ Resolve as arbitrator at 90 percent to supplier, with a written reason. Show 2,2
 
 "The named arbitrator allocates the split. Each participant withdraws their own credit. The record retains the evidence, decision and action history."
 
-## 2:15 — Monad escrow proof (record only after deployment)
+## 2:15 — Monad escrow proof (record only after live wallet rehearsal)
 
 Show Monad testnet chain 10143, deployed escrow and TGT addresses, a successful settlement receipt, both withdrawal receipts and resulting balances. Use distinct buyer, supplier and arbitrator wallets. Never substitute local EVM results or sandbox activity for deployed transactions.
 
 "The contract holds test tokens and enforces participant permissions. Settlement creates pull-withdrawal credits. Documents remain off-chain; only commitments and transactions are public."
 
-If deployment is incomplete, replace this segment with an honest statement that local contract tests passed and testnet deployment remains pending. Do not call the demo fully deployed.
+Contracts are deployed and read-only checks passed. No trade has yet been created on the deployed escrow (next trade ID 1 on 2026-10-02). Until the wallet rehearsal is complete, show the contract addresses and describe the remaining verification; do not imply settlement or withdrawal receipts exist.
 
 ## 2:45 — Close
 
@@ -46,4 +46,4 @@ If deployment is incomplete, replace this segment with an honest statement that 
 
 ## Recording status
 
-No video has been recorded in this run. Browser verification/recording is blocked by automatic approval review reaching its usage limit. Resume browser work only when that limitation is resolved; do not represent this script as a recording.
+No video has been recorded. Browser verification and screenshots worked on 2026-10-02. The three-wallet testnet rehearsal, hosted configuration and judge access remain before recording the full submission demo. This narration is not a recording.

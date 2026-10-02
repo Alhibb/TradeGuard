@@ -51,3 +51,11 @@ Site ownership confirmed. Isolated publishing checkout: .sites-runtime/publish-c
 Prepared docs/DEMO_NARRATION.md and docs/SUBMISSION_STATUS.md. No video recorded, no Monad contracts deployed, and no Metropolis entry submitted.
 
 Publication completed successfully at https://devclans-tradeguard.alhibb.chatgpt.site using deployment appgdep_6abb7637567481918a3933207b71c8fa. Owner-only access preserved; env revision 0 means hosted Qwen remains unconfigured. Local config verified aiEnabled=true for qwen-plus. outputs/TradeGuard-source.zip is the clean committed source snapshot; narration/draft copies available in outputs/. Remaining external inputs and review blockers are recorded in docs/SUBMISSION_STATUS.md.
+
+## Verification and documentation refresh — 2026-10-02
+
+GitHub source push had completed previously to Alhibb/TradeGuard main. User has now deployed TGT 0xfcc80262fccc19b3a833e2453e52316a0edf5f3b and escrow 0x27ba251f396277a9af8ca7cf2cde4a279582f83a. Local .env contains those public addresses; never print its other values. scripts/verify-testnet.mjs verifies contract code, token linkage, symbol/decimals and owner without signing. Next trade ID was 1: live three-wallet demo remains outstanding.
+
+Current checks passed: TypeScript (fixed typed keys in scripts/verify-qwen-live.ts), build, 11 domain/extraction tests, 7 EVM tests, full local proxy Qwen demo TG-98823D and worker ownership demo TG-4209B6. Browser access worked in this turn; screenshots saved in docs/screenshots. Browser export download observer timed out; do not claim export retrieval verified. Official Metropolis page read and current requirements recorded in docs/METROPOLIS_SUBMISSION.md.
+
+Preview stopped by user after Windows denied process termination. Rebuilt and restarted successfully via pnpm local in execution session 41412; keep running for user. URL http://127.0.0.1:5173/. Built app runtime confirmed Qwen enabled and correct deployed addresses. Hosted environment has not been changed. Hosted secrets/judge access/live wallet rehearsal/video/final submission remain. README, submission and verification docs replace stale pending-deployment statements.

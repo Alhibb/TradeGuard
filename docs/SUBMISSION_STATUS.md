@@ -1,24 +1,33 @@
-# Submission status
+# Submission status — 2026-10-02
 
-- Local Qwen Plus key: live synthetic test passed, HTTP 200; 12/12 explicit fields matched in 7.6 seconds. This is one fixture, not an accuracy benchmark.
-- Local Qwen setting: enabled and app restarted on http://127.0.0.1:5173.
-- Previously verified: complete local API workflow, TypeScript, production build, 11 domain/extraction tests and 7 local EVM tests.
-- Browser Qwen walkthrough and video: pending. Automatic browser approval review hit its usage limit; no workaround was used.
-- Monad deployment: pending a funded testnet signing wallet. No deployer key is configured in the process. No deployment or transaction links exist yet.
-- Code repository: pending user-provided destination; original checkout has no remote.
-- Hosted app: existing Site ownership confirmed; publishing preparation in progress. Judge audience remains owner-only until an access choice is supplied.
-- Official Metropolis rules/form: still need confirmation from the official portal. No submission has been made.
+## Completed
 
-Materials: METROPOLIS_SUBMISSION.md and DEMO_NARRATION.md.
+- GitHub repository: https://github.com/Alhibb/TradeGuard (previous source push verified on main).
+- Site published: https://devclans-tradeguard.alhibb.chatgpt.site/; audience remains owner-only.
+- Local Singapore Qwen enabled; live sample browser extraction and full Qwen-backed API workflow passed.
+- TGT deployed: 0xfcc80262fccc19b3a833e2453e52316a0edf5f3b.
+- Escrow deployed: 0x27ba251f396277a9af8ca7cf2cde4a279582f83a.
+- Read-only on-chain code, chain, linkage and six-decimal TGT checks passed.
+- TypeScript, production build, 11 domain/extraction tests, 7 EVM tests and complete local API demo passed.
+- Browser screenshots, README setup/deployment/demo guides, verification record and Metropolis submission guide prepared.
+- Official event page read; application platform identified: https://hackathon.monad.xyz/.
 
-## Publishing result
+## Still required before submission
 
-Updated Site publication succeeded: https://devclans-tradeguard.alhibb.chatgpt.site
-Deployment: appgdep_6abb7637567481918a3933207b71c8fa
-Source: 7eea3cacc8a5e7a4770e9062bbdffc89faf2701d
-Version: appgprj_6ab82a6b21248191b6fbf1341c5309bb~appgver_85dc9b1f68c08191a65f88940e4d6353
-Audience remains owner-only; hosted environment revision 0. Hosted Qwen is not configured. Local runtime confirmed aiEnabled=true, model=qwen-plus, chainId=10143.
+1. Configure hosted Qwen via supported secure secret entry and hosted public contract addresses; deploy environment changes and verify.
+2. Choose judge access explicitly and verify access from a judge account. The current owner-only Site is not a general judge-accessible demo.
+3. Perform the three-wallet Monad trade, settlement and both withdrawals. Latest next trade ID was 1; no created live trade yet. Save real receipt/explorer links.
+4. Record a demo in the platform's required format and length. No video has been recorded.
+5. Complete the project/team profile, confirm exact cutoff timezone and rules, identify eligible build-window work, review and submit. No entry has been submitted.
 
-Shareable clean source snapshot: outputs/TradeGuard-source.zip. Narration and submission draft copies are in outputs/. The ZIP excludes actual .env, runtime state and credentials. It is not a video or public repository.
+The official overview lists 13 October as the deadline, judging 14–27 October and winners 3 November. Confirm exact year/time/timezone and current requirements in the platform.
 
-Still required: funded testnet signing wallet, GitHub destination, judge access choice, secure hosted-key entry, and restored browser approval to complete recording. No Monad deployment or final hackathon submission has been performed.
+## Materials
+
+- README.md: all local setup, Qwen, contract deployment, sandbox and wallet guides with screenshots.
+- docs/METROPOLIS_SUBMISSION.md: official requirements, copy-ready pitch and checklist.
+- docs/VERIFICATION.md: dated test results and limits.
+- docs/DEMO_NARRATION.md: proposed narration, not a video.
+- docs/screenshots/: real local browser captures, not chain transaction proof.
+
+The older outputs/TradeGuard-source.zip is a historical snapshot, not the latest documentation package.
